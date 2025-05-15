@@ -1,0 +1,2 @@
+# 36-SOPKATHON-SERVER-IOS3
+솝커톤 IOS 3팀 서버 레포입니다
