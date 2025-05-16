@@ -27,6 +27,11 @@ jobs:
       - name: Build with Gradle 🛠️
         run: ./gradlew clean build
 
+      - name: Check build output files 📂
+        run: |
+          ls -l build/libs/
+          ls -l src/main/resources/
+
       - name: Send JAR and application.yml to server via SCP 🚀
         uses: appleboy/scp-action@v0.1.4
         with:
