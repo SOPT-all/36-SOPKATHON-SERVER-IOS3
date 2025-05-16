@@ -32,7 +32,3 @@ application.yml
 /dist/
 /nbdist/
 /.nb-gradle
-
-# Gradle Wrapper
-!gradle-wrapper.properties
-gradle-wrapper.jar
