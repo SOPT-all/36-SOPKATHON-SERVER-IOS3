@@ -3,7 +3,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserConroller {
+public class UserController {
     @GetMapping("/user")
     public String check() {
         return "Server is running!";
