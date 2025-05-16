@@ -29,4 +29,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}       # 🔑 SSH 비밀키 (GitHub Secrets에 저장)
           script: |
             cd /home/ubuntu/36-SOPKATHON-SERVER-IOS3                # 📂 서버 내 앱 위치로 이동
-            ./deploy.sh                            # ▶️ 배포 스크립트 실행 (예: git pull, 앱 재시작)
+            git pull
+            ./deploy.sh                         # ▶️ 배포 스크립트 실행 (예: git pull, 앱 재시작)
