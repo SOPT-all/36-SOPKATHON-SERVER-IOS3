@@ -27,9 +27,11 @@ jobs:
       - name: Build with Gradle 🛠️
         run: ./gradlew clean build
 
-      - name: Check files existence 🔍
+      - name: Check files before SCP 📂
         run: |
+          echo "build/libs 디렉토리 파일 목록:"
           ls -l build/libs/
+          echo "src/main/resources 디렉토리 파일 목록:"
           ls -l src/main/resources/
 
       - name: Send JAR and application.yml to server via SCP 🚀
