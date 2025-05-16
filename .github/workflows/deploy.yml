@@ -25,16 +25,18 @@ jobs:
           echo "${{ secrets.APPLICATION_YML }}" > src/main/resources/application.yml
 
       - name: Build with Gradle 🛠️
-        run: ./gradlew build
+        run: ./gradlew clean build
 
-      - name: Send application.yml to server via SCP 🚀
+      - name: Send JAR and application.yml to server via SCP 🚀
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "src/main/resources/application.yml"
-          target: "/home/ubuntu/36-SOPKATHON-SERVER-IOS3/src/main/resources"
+          source: |
+            build/libs/sopkathon-0.0.1-SNAPSHOT.jar
+            src/main/resources/application.yml
+          target: /home/ubuntu/36-SOPKATHON-SERVER-IOS3
 
       - name: Deploy to server 🌐
         uses: appleboy/ssh-action@v1.2.2
@@ -45,3 +47,51 @@ jobs:
           script: |
             cd /home/ubuntu/36-SOPKATHON-SERVER-IOS3
             ./deploy.sh
+
+#name: CI/CD 🚀
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#
+#jobs:
+#  build-and-deploy:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout repository 📥
+#        uses: actions/checkout@v3
+#
+#      - name: Set up JDK 17 ☕
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: '17'
+#          distribution: 'temurin'
+#
+#      - name: Create application.yml 📄 ✅
+#        run: |
+#          mkdir -p src/main/resources
+#          echo "${{ secrets.APPLICATION_YML }}" > src/main/resources/application.yml
+#
+#      - name: Build with Gradle 🛠️
+#        run: ./gradlew build
+#
+#      - name: Send application.yml to server via SCP 🚀
+#        uses: appleboy/scp-action@v0.1.4
+#        with:
+#          host: ${{ secrets.SERVER_IP }}
+#          username: ${{ secrets.SERVER_USER }}
+#          key: ${{ secrets.SERVER_SSH_KEY }}
+#          source: "src/main/resources/application.yml"
+#          target: "/home/ubuntu/36-SOPKATHON-SERVER-IOS3/src/main/resources"
+#
+#      - name: Deploy to server 🌐
+#        uses: appleboy/ssh-action@v1.2.2
+#        with:
+#          host: ${{ secrets.SERVER_IP }}
+#          username: ${{ secrets.SERVER_USER }}
+#          key: ${{ secrets.SERVER_SSH_KEY }}
+#          script: |
+#            cd /home/ubuntu/36-SOPKATHON-SERVER-IOS3
+#            ./deploy.sh
