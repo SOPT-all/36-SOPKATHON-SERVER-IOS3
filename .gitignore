@@ -22,7 +22,7 @@ out/
 *.log
 
 # application 설정파일
-application.yml
+src/main/resources/application.yml
 .env
 
 # 기타 IDE
@@ -32,3 +32,4 @@ application.yml
 /dist/
 /nbdist/
 /.nb-gradle
+

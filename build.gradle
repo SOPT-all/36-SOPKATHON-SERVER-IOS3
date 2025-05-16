@@ -31,7 +31,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	//DB
-	//runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	//test
