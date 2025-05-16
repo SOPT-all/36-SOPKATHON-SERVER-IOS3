@@ -27,20 +27,29 @@ jobs:
       - name: Build with Gradle 🛠️
         run: ./gradlew clean build
 
-      - name: Check files before SCP 📂
+      - name: Check files existence 🔍
         run: |
           echo "build/libs 디렉토리 파일 목록:"
           ls -l build/libs/
           echo "src/main/resources 디렉토리 파일 목록:"
           ls -l src/main/resources/
 
-      - name: Send JAR and application.yml to server via SCP 🚀
+      - name: Send JAR to server via SCP 🚀
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "build/libs/sopkathon-0.0.1-SNAPSHOT.jar src/main/resources/application.yml"
+          source: "build/libs/sopkathon-0.0.1-SNAPSHOT.jar"
+          target: /home/ubuntu/36-SOPKATHON-SERVER-IOS3
+
+      - name: Send application.yml to server via SCP 🚀
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "src/main/resources/application.yml"
           target: /home/ubuntu/36-SOPKATHON-SERVER-IOS3
 
       - name: Deploy to server 🌐
