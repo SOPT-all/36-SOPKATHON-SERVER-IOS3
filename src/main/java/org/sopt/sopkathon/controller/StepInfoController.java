@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class StepInfoController {
     @GetMapping("/test")
     public String check() {
         return "Server is running!";
