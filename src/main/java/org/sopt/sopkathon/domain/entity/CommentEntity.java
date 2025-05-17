@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
 @Table(name = "comment")
 public class CommentEntity {
@@ -22,5 +22,10 @@ public class CommentEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "island_id")
     private IslandEntity islandEntity;
+
+    public CommentEntity(IslandEntity islandEntity, String comment) {
+        this.islandEntity = islandEntity;
+        this.comment = comment;
+    }
 
 }
