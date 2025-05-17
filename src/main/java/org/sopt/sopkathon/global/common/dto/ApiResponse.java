@@ -1,6 +1,6 @@
 package org.sopt.sopkathon.global.common.dto;
 
-import org.sopt.sopkathon.global.common.dto.constant.SuccessCode;
+import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -11,17 +11,15 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
-	private String code;
+	private HttpStatus code;
 	private String message;
 	private T data;
 
-	public static<T> ApiResponse<T> success(SuccessCode successCode, T data) {
-		return new ApiResponse<>(successCode.getCode(), successCode.getMessage(), data);
+	public static <T> ApiResponse<T> success(HttpStatus statusCode, String message, T data) {
+		return new ApiResponse<>(statusCode, message, data);
 	}
 
-	public static<T> ApiResponse<T> success(SuccessCode successCode) {
-		return new ApiResponse<>(successCode.getCode(), successCode.getMessage(), null);
+	public static <T> ApiResponse<T> error(HttpStatus statusCode, String message) {
+		return new ApiResponse<>(statusCode, message, null);
 	}
-
-
 }
