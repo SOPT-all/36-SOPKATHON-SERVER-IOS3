@@ -1,6 +1,7 @@
 package org.sopt.sopkathon.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -8,17 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Entity
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "user_name")
-    private String userName;
-
-
+    private final Long userId;
+    private final String userName;
 
 }
