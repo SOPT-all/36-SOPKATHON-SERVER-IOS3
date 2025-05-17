@@ -11,16 +11,13 @@ import java.util.List;
 @Service
 public class CommentService {
 
-
     private CommentRepository commentRepository;
 
     public CommentService(CommentRepository commentRepository){
         this.commentRepository = commentRepository;
     }
 
-
-
-    List<Comment> allComments(){
+    public List<Comment> getAllComments(){
         return commentRepository.findAll()
                 .stream()
                 .map(CommentMapper::toDomain).toList();

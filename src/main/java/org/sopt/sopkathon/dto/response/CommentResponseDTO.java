@@ -1,4 +1,4 @@
 package org.sopt.sopkathon.dto.response;
 
-public record CommentResponseDTO(Long commentId, String comment) {
+public record CommentResponseDTO(Long commentId, Long islandId, String comment) {
 }
